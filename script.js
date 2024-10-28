@@ -1,14 +1,8 @@
 let computerScore = 0;
 let humanScore = 0;
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-}
 
 function getComputerChoice() {
-    let choice = getRandomInt(3);
+    let choice = Math.floor(Math.random() * 3);
     if(choice === 0) {
         choice = "rock"
         console.log('Computer plays: Rock');
@@ -26,7 +20,13 @@ function getComputerChoice() {
 
 function getHumanChoice() {
     let choice = window.prompt("Rock, Paper, or Scissors?")
-    console.log(`You play: ${choice}`)
+    if(choice.toLowerCase() == "rock") {
+        console.log("You play: Rock")
+    } else if(choice.toLowerCase() == "paper") {
+        console.log("You play: Paper")
+    } else if(choice.toLowerCase() == "scissors") {
+        console.log("You play: Scissors")
+    }
     return choice;
 }
 
@@ -55,6 +55,11 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function playGame() {
+    for (i = 0; i < 5; i++) {
+        playRound(getHumanChoice(), getComputerChoice());
+        console.log(`Your score: ${humanScore}`);
+        console.log(`Computer score: ${computerScore}`);
+    }
 }
 
-playRound(humanSelection, computerSelection);
+playGame();
